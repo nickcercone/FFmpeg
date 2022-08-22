@@ -140,7 +140,9 @@ static int tcp_open(URLContext *h, const char *uri, int flags)
         s->open_timeout =
         h->rw_timeout   = s->rw_timeout;
     }
-    hints.ai_family = AF_UNSPEC;
+    //hints.ai_family = AF_UNSPEC;
+    // Fix: Only use ipv4
+    hints.ai_family = AF_INET;
     hints.ai_socktype = SOCK_STREAM;
     snprintf(portstr, sizeof(portstr), "%d", port);
     if (s->listen)
